@@ -74,6 +74,12 @@ $commentId = 1;
     $post->comment($commentBody, $user, $parent);  
 ```
 
+### Check if a comment has children
+```php
+    $comment = AliBayat\LaravelCommentable\Comment::first();
+    $comment->hasChildren();	// boolean
+```
+
 ### Update a comment
 ```php
     $post->updateComment($commentId, $commentBody);
@@ -88,6 +94,12 @@ $commentId = 1;
     $post->commentCount();
 ```
 
+### comments() Relationship
+```php
+    $postWithComments = App\Post::with('comments')->get();
+    // you have access to comments() relationship in case you need eager loading
+
+```
 
 #### Credits
 
