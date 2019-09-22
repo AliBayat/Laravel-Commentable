@@ -50,7 +50,7 @@ class Post extends Model
 
 ```
 
-#### Usage
+### Usage
 ```php
 //  assuming that we have these variables
 $user = User::first();
