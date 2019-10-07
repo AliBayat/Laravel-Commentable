@@ -102,7 +102,8 @@ $commentId = 1;
 
 ### comments() Relationship
 ```php
-    $postWithComments = Post::with('comments')->get();
+    $postWithComments = Post::with('comments')
+	    ->get();
     // you have access to comments() relationship in case you need eager loading
 
 ```
