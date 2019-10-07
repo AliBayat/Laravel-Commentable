@@ -23,7 +23,7 @@ php artisan migrate
 ```
 
 
-LaravelCommentable package will be auto-discovered by Laravel. and if not: register your package in config/app.php providers array manually.
+Laravel Commentable package will be auto-discovered by Laravel. and if not: register your package in config/app.php providers array manually.
 ```php
 'providers' => [
 	...
@@ -52,6 +52,12 @@ class Post extends Model
 
 ### Usage
 ```php
+use App\User;
+use App\Post;
+use AliBayat\LaravelCommentable\Comment;
+
+
+
 //  assuming that we have these variables
 $user = User::first();
 $post = Post::first();
@@ -74,10 +80,10 @@ $commentId = 1;
     $post->comment($commentBody, $user, $parent);  
 ```
 
-### Check if a comment has children
+### Check if a comment has children (boolean)
 ```php
-    $comment = AliBayat\LaravelCommentable\Comment::first();
-    $comment->hasChildren();	// boolean
+    $comment = Comment::first();
+    $comment->hasChildren(); 
 ```
 
 ### Update a comment
@@ -96,7 +102,7 @@ $commentId = 1;
 
 ### comments() Relationship
 ```php
-    $postWithComments = App\Post::with('comments')->get();
+    $postWithComments = Post::with('comments')->get();
     // you have access to comments() relationship in case you need eager loading
 
 ```
