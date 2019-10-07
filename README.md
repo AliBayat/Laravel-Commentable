@@ -23,7 +23,7 @@ php artisan migrate
 ```
 
 
-Laravel Commentable package will be auto-discovered by Laravel. and if not: register your package in config/app.php providers array manually.
+Laravel Commentable package will be auto-discovered by Laravel. and if not: register the package in config/app.php providers array manually.
 ```php
 'providers' => [
 	...
