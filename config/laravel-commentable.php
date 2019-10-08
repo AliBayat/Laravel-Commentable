@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 return [
 
-    /**
-    *
-    * This option allows for the extension of the commentable model, by pointing it to a model
-    *
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent Model
+    |--------------------------------------------------------------------------
     */
     
     'model' => \AliBayat\LaravelCommentable\Comment::class,
