@@ -78,4 +78,30 @@ class Comment extends Model
     {
         return (bool) static::find($id)->delete();
     }
+    
+
+    /**
+     * activate a comment
+     */
+    public function active()
+    {
+        if ($this->update(['active' => true])) {
+            return true;
+        }
+        return false;
+    }
+    
+
+    /**
+     * deactivate a comment
+     */
+    public function deactive()
+    {
+        if ($this->update(['active' => false])) {
+            return true;
+        }
+        return false;
+    }    
+    
+    
 }
