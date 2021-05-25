@@ -61,7 +61,7 @@ use AliBayat\LaravelCommentable\Comment;
 //  assuming that we have these variables
 $user = User::first();
 $post = Post::first();
-$commentBody = 
+$comment = 
 [
 	'title' => 'comment title (nullable)', 
 	'body' => 'comment body'
@@ -71,13 +71,13 @@ $commentId = 1;
 ### Create a comment
 
 ```php
-    $post->comment($commentBody, $user);
+    $post->comment($comment, $user);
 ```
 
 ### Create a child comment
 
 ```php
-    $post->comment($commentBody, $user, $parent);  
+    $post->comment($comment, $user, $parent);  
 ```
 
 ### Check if a comment has children (boolean)
@@ -88,7 +88,7 @@ $commentId = 1;
 
 ### Update a comment
 ```php
-    $post->updateComment($commentId, $commentBody);
+    $post->updateComment($commentId, $comment);
 ```
 ### Delete a comment
 ```php
@@ -100,13 +100,53 @@ $commentId = 1;
     $post->commentCount();
 ```
 
+---
+
+### Activation
+
+by default when you add a cooment it is stored as a deactive comment, unless you provide an 'active' field and set it to true:
+```php
+$activeComment = 
+[
+	'title'  => 'comment title (nullable)', 
+	'body'   => 'comment body',
+	'active' => true
+];
+$post->comment($activeComment, $user);
+```
+
+but you can always change the comment state by using below methods:
+
+### Activate
+```php
+    $post->active();
+    // returns true if operation is successful
+```
+
+### Deactivate
+```php
+    $post->deactive();
+    // returns true if operation is successful
+```
+---
+
 ### comments() Relationship
 ```php
     $postWithComments = Post::with('comments')
 	    ->get();
-    // you have access to comments() relationship in case you need eager loading
+    // return all comments associated with the post
 
 ```
+
+
+### activeComments() Relationship
+```php
+    $postWithComments = Post::with('activeComments')
+	    ->get();
+    // return all active comments associated with the post
+
+```
+
 
 #### Credits
 
