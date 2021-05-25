@@ -30,6 +30,16 @@ trait Commentable
         return $this->morphMany($this->commentableModel(), 'commentable');
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function activeComments(): MorphMany
+    {
+        return $this->morphMany($this->commentableModel(), 'commentable')->where('active', true);
+    }
+    
+    
     /**
      * @param $data
      * @param Model      $creator
