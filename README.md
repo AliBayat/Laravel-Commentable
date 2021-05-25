@@ -6,8 +6,8 @@ This Package makes it easy to implement Commenting system for Eloquent's Models.
 
 
 ### Requirements
-PHP 7.2+
-Laravel 7+
+- PHP 7.2+
+- Laravel 7+
 
 #### Composer Install
 
