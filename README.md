@@ -172,6 +172,28 @@ but you can always change the comment state by using below methods:
 ```
 
 
+### ancestors Relationship
+```php
+    $comment = Post::first()->comments()->first();
+    
+    $comment->ancestors;
+    // return the comment's ancestors if any
+
+```
+
+
+### descendants Relationship
+```php
+    $comment = Post::first()->comments()->first();
+    
+    $comment->descendants;
+    // return the comment's descendants if any
+
+```
+
+
+
+
 ---
 
 ## Additional functionalities
