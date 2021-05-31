@@ -161,6 +161,17 @@ but you can always change the comment state by using below methods:
 ```
 
 
+
+### children Relationship
+```php
+    $comment = Post::first()->comments()->first();
+    
+    $comment->children;
+    // return the comment's children if any
+
+```
+
+
 ---
 
 ## Additional functionalities
