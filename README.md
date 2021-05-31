@@ -50,7 +50,7 @@ class Post extends Model
 
 ```
 
-### Usage
+## Usage
 ```php
 use App\User;
 use App\Post;
@@ -102,7 +102,7 @@ $commentId = 1;
 
 ---
 
-### Activation
+## Activation
 
 by default when you add a cooment it is stored as a deactive comment, unless you provide an 'active' field and set it to true:
 ```php
@@ -130,7 +130,9 @@ but you can always change the comment state by using below methods:
 ```
 ---
 
-### comments() Relationship
+## Relationships
+
+### comments Relationship
 ```php
     $postWithComments = Post::with('comments')
 	    ->get();
@@ -139,7 +141,7 @@ but you can always change the comment state by using below methods:
 ```
 
 
-### activeComments() Relationship
+### activeComments Relationship
 ```php
     $postWithComments = Post::with('activeComments')
 	    ->get();
@@ -147,10 +149,23 @@ but you can always change the comment state by using below methods:
 
 ```
 
+
+
+### parent Relationship
+```php
+    $comment = Post::first()->comments()->first();
+    
+    $comment->parent;
+    // return the comment's parent if available
+
+```
+
+
 ---
 
-### Additional functionalities
+## Additional functionalities
 thanks to the great [laravel-nestedset](https://github.com/lazychaser/laravel-nestedset) package, you have access to some additional functionalities, we review some of them here but you can always refer to the package's repository for the full documentation.
+
 
 
 
