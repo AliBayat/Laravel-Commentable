@@ -147,6 +147,12 @@ but you can always change the comment state by using below methods:
 
 ```
 
+---
+
+### Additional functionalities
+thanks to the great [laravel-nestedset](https://github.com/lazychaser/laravel-nestedset) package, you have access to some additional functionalities, we review some of them here but you can always refer to the package's repository for the full documentation.
+
+
 
 #### Credits
 
