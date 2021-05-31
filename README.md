@@ -143,7 +143,7 @@ but you can always change the comment state by using below methods:
 
 ### activeComments Relationship
 ```php
-    $postWithComments = Post::with('activeComments')
+    $postWithActiveComments = Post::with('activeComments')
 	    ->get();
     // return all active comments associated with the post
 
