@@ -9,7 +9,7 @@ This Package makes it easy to implement Commenting system for Eloquent's Models.
 - PHP 7.2+
 - Laravel 7+
 
-#### Composer Install
+## Installation
 
 	composer require alibayat/laravel-commentable
 
