@@ -61,8 +61,7 @@ use AliBayat\LaravelCommentable\Comment;
 //  assuming that we have these variables
 $user = User::first();
 $post = Post::first();
-$comment = 
-[
+$comment = [
 	'title' => 'comment title (nullable)', 
 	'body' => 'comment body'
 ];
@@ -112,20 +111,20 @@ $activeComment =
 	'body'   => 'comment body',
 	'active' => true
 ];
-$post->comment($activeComment, $user);
+$comment = $post->comment($activeComment, $user);
 ```
 
 but you can always change the comment state by using below methods:
 
 ### Activate
 ```php
-    $post->active();
+    $comment->active();
     // returns true if operation is successful
 ```
 
 ### Deactivate
 ```php
-    $post->deactive();
+    $comment->deactive();
     // returns true if operation is successful
 ```
 ---
