@@ -37,7 +37,7 @@ Laravel Commentable package will be auto-discovered by Laravel. and if not: regi
 ```php
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use AliBayat\LaravelCommentable\Commentable;
