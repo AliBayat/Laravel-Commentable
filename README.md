@@ -52,10 +52,9 @@ class Post extends Model
 
 ## Usage
 ```php
-use App\User;
-use App\Post;
+use App\Models\User;
+use App\Models\Post;
 use AliBayat\LaravelCommentable\Comment;
-
 
 
 //  assuming that we have these variables
@@ -65,7 +64,6 @@ $comment = [
 	'title' => 'comment title (nullable)', 
 	'body' => 'comment body'
 ];
-$commentId = 1;
 ```
 ### Create a comment
 
