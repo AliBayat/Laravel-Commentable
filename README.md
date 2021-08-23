@@ -86,7 +86,7 @@ $childCommentData = [
 $post->comment($childCommentData, $user, $parentComment);  
 ```
 
-### Update a comment of post
+### Update a comment of the post
 ```php
 $comment = Comment::first();
 
@@ -97,11 +97,16 @@ $newData = [
 $post->updateComment($comment->id, $newData);
 ```
 
-### Delete a comment
+### Delete a single comment of the post
 ```php
 $comment = Comment::first();
 
 $post->deleteComment($comment->id); 
+```
+
+### Delete all the comments of the post
+```php
+$post->comments()->delete();
 ```
 
 ### Check if a comment has any children (boolean)
