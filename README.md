@@ -60,70 +60,90 @@ use AliBayat\LaravelCommentable\Comment;
 //  assuming that we have these variables
 $user = User::first();
 $post = Post::first();
-$comment = [
+
+```
+### Create a comment for the post
+
+```php
+$commentData = [
 	'title' => 'comment title (nullable)', 
 	'body' => 'comment body'
 ];
+
+$post->comment($commentData, $user);
 ```
-### Create a comment
+
+### Create a child comment for the post
 
 ```php
-    $post->comment($comment, $user);
+$parentComment = Comment::first();
+
+$childCommentData = [
+	'title' => 'comment title (nullable)', 
+	'body' => 'comment body'
+];
+
+$post->comment($childCommentData, $user, $parentComment);  
 ```
 
-### Create a child comment
-
+### Update a comment of post
 ```php
-    $post->comment($comment, $user, $parent);  
+$comment = Comment::first();
+
+$newData = [
+	'body' => 'new body of the comment to update'
+];
+
+$post->updateComment($comment->id, $newData);
 ```
 
-### Check if a comment has children (boolean)
-```php
-    $comment = Comment::first();
-    $comment->hasChildren(); 
-```
-
-### Update a comment
-```php
-    $post->updateComment($commentId, $comment);
-```
 ### Delete a comment
 ```php
-    $post->deleteComment($commentId); 
+$comment = Comment::first();
+
+$post->deleteComment($comment->id); 
 ```
 
-### Count comments
+### Check if a comment has any children (boolean)
 ```php
-    $post->commentCount();
+$comment = Comment::first();
+
+$comment->hasChildren(); 
+```
+
+### Count comments of the post
+```php
+$post->commentCount();
 ```
 
 ---
 
 ## Activation
 
-by default when you add a cooment it is stored as a deactive comment, unless you provide an 'active' field and set it to true:
+by default when you create a comment, it will be stored as a deactivated comment, unless you provide an 'active' field and set it to true:
 ```php
-$activeComment = 
-[
-	'title'  => 'comment title (nullable)', 
+$activeComment = [
 	'body'   => 'comment body',
 	'active' => true
 ];
+
 $comment = $post->comment($activeComment, $user);
 ```
 
-but you can always change the comment state by using below methods:
+but you can always change the comment's state of activation by using below methods:
 
 ### Activate
 ```php
-    $comment->active();
-    // returns true if operation is successful
+$comment->active();
+
+// returns a boolean indicating the state of operation
 ```
 
 ### Deactivate
 ```php
-    $comment->deactive();
-    // returns true if operation is successful
+$comment->deactive();
+
+// returns a boolean indicating the state of operation
 ```
 ---
 
@@ -131,18 +151,18 @@ but you can always change the comment state by using below methods:
 
 ### comments Relationship
 ```php
-    $postWithComments = Post::with('comments')
-	    ->get();
-    // return all comments associated with the post
+$postWithComments = Post::with('comments')->get();
+
+// returns a collection of all comments associated with the post
 
 ```
 
 
 ### activeComments Relationship
 ```php
-    $postWithActiveComments = Post::with('activeComments')
-	    ->get();
-    // return all active comments associated with the post
+$postWithActiveComments = Post::with('activeComments')->get();
+
+// returns a collection of all active comments associated with the post
 
 ```
 
@@ -150,10 +170,11 @@ but you can always change the comment state by using below methods:
 
 ### parent Relationship
 ```php
-    $comment = Post::first()->comments()->first();
+$comment = Comments::latest()->first();
     
-    $comment->parent;
-    // return the comment's parent if available
+$comment->parent;
+
+// returns the comment's parent if available
 
 ```
 
@@ -161,30 +182,33 @@ but you can always change the comment state by using below methods:
 
 ### children Relationship
 ```php
-    $comment = Post::first()->comments()->first();
+$comment = Comments::latest()->first();
     
-    $comment->children;
-    // return the comment's children if any
+$comment->children;
+
+// returns the comment's children if available
 
 ```
 
 
 ### ancestors Relationship
 ```php
-    $comment = Post::first()->comments()->first();
+$comment = Comments::latest()->first();
     
-    $comment->ancestors;
-    // return the comment's ancestors if any
+$comment->ancestors;
+
+// return the comment's ancestors if available
 
 ```
 
 
 ### descendants Relationship
 ```php
-    $comment = Post::first()->comments()->first();
+$comment = Comments::latest()->first();
     
-    $comment->descendants;
-    // return the comment's descendants if any
+$comment->descendants;
+
+// return the comment's descendants if available
 
 ```
 
@@ -198,39 +222,41 @@ thanks to the great [laravel-nestedset](https://github.com/lazychaser/laravel-ne
 
 ### toTree()
 ```php
-    Post::first()->comments->toTree();
+$post->comments->toTree();
     
-    // return a collection of the comment's tree structure
+// returns a collection of the comment's tree structure associated with the post
 
 ```
 
 
 ### toFlatTree()
 ```php
-    Post::first()->comments->toFlatTree();
+$post->comments->toFlatTree();
     
-    // return a collection of the comment's flat tree structure
+// return a collection of the comment's flat tree structure associated with the post
 
 ```
 
 ### saveAsRoot()
 ```php
-    $comment = Post::first()->comments()->latest()->first();
-    $comment->saveAsRoot();
+$comment = $post->comments()->latest()->first();
     
-    // Implicitly change the comment's position to Root
-    // return bool
+$comment->saveAsRoot();
+    
+// Implicitly change the comment's position to Root
+// returns boolean
 
 ```
 
 
 ### makeRoot()
 ```php
-    $comment = Post::first()->comments()->latest()->first();
-    $comment->makeRoot()->save();
+$comment = $post->comments()->latest()->first();
+
+$comment->makeRoot()->save();
     
-    // Explicitly change the comment's position to Root
-    // return bool
+// Explicitly change the comment's position to Root
+// returns boolean
 
 ```
 
