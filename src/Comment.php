@@ -95,7 +95,7 @@ class Comment extends Model
     /**
      * deactivate a comment
      */
-    public function deactive()
+    public function deactivate()
     {
         if ($this->update(['active' => false])) {
             return true;

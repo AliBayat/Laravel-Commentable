@@ -146,7 +146,7 @@ $comment->active();
 
 ### Deactivate
 ```php
-$comment->deactive();
+$comment->deactivate();
 
 // returns a boolean indicating the state of operation
 ```
