@@ -18,7 +18,9 @@ This Package makes it easy to implement Commenting system for Eloquent's Models.
 
 ```bash
 php artisan vendor:publish --provider="AliBayat\LaravelCommentable\CommentableServiceProvider"
+```
 
+```bash
 php artisan migrate
 ```
 
