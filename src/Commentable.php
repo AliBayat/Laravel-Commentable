@@ -27,6 +27,14 @@ trait Commentable
      */
     public function comments(): MorphMany
     {
+        return $this->morphMany($this->commentableModel(), 'commentable')->whereNull('parent_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function allComments(): MorphMany
+    {
         return $this->morphMany($this->commentableModel(), 'commentable');
     }
 
@@ -35,6 +43,15 @@ trait Commentable
      * @return mixed
      */
     public function activeComments(): MorphMany
+    {
+        return $this->morphMany($this->commentableModel(), 'commentable')->whereNull('parent_id')->where('active', true);
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function allActiveComments(): MorphMany
     {
         return $this->morphMany($this->commentableModel(), 'commentable')->where('active', true);
     }
@@ -97,6 +114,6 @@ trait Commentable
      */
     public function commentCount(): int
     {
-        return $this->comments->count();
+        return $this->allComments()->count();
     }
 }
