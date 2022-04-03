@@ -123,6 +123,12 @@ $comment->hasChildren();
 $post->commentCount();
 ```
 
+### Show comments on a post
+```php
+$post->allComments(); // shows all comments (including children)
+$post->comments(); // shows only top level comments
+```
+
 ---
 
 ## Activation
