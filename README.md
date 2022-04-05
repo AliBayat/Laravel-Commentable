@@ -18,7 +18,9 @@ This Package makes it easy to implement Commenting system for Eloquent's Models.
 
 ```bash
 php artisan vendor:publish --provider="AliBayat\LaravelCommentable\CommentableServiceProvider"
+```
 
+```bash
 php artisan migrate
 ```
 
@@ -119,6 +121,12 @@ $comment->hasChildren();
 ### Count comments of the post
 ```php
 $post->commentCount();
+```
+
+### Show comments on a post
+```php
+$post->allComments(); // shows all comments (including children)
+$post->comments(); // shows only top level comments
 ```
 
 ---
