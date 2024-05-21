@@ -10,11 +10,11 @@ This Package makes it easy to implement Commenting system for Eloquent's Models.
 - Laravel 7+
 
 ## Installation
-
-	composer require alibayat/laravel-commentable
+```bash
+composer require alibayat/laravel-commentable
+```
 
 #### Publish and Run the migrations
-
 
 ```bash
 php artisan vendor:publish --provider="AliBayat\LaravelCommentable\CommentableServiceProvider"
@@ -68,7 +68,7 @@ $post = Post::first();
 
 ```php
 $commentData = [
-	'title' => 'comment title (nullable)', 
+	'title' => 'comment title (nullable)',
 	'body' => 'comment body'
 ];
 
@@ -81,11 +81,11 @@ $post->comment($commentData, $user);
 $parentComment = Comment::first();
 
 $childCommentData = [
-	'title' => 'comment title (nullable)', 
+	'title' => 'comment title (nullable)',
 	'body' => 'comment body'
 ];
 
-$post->comment($childCommentData, $user, $parentComment);  
+$post->comment($childCommentData, $user, $parentComment);
 ```
 
 ### Update a comment of the post
@@ -103,7 +103,7 @@ $post->updateComment($comment->id, $newData);
 ```php
 $comment = Comment::first();
 
-$post->deleteComment($comment->id); 
+$post->deleteComment($comment->id);
 ```
 
 ### Delete all the comments of the post
@@ -115,7 +115,7 @@ $post->comments()->delete();
 ```php
 $comment = Comment::first();
 
-$comment->hasChildren(); 
+$comment->hasChildren();
 ```
 
 ### Count comments of the post
@@ -184,7 +184,7 @@ $postWithActiveComments = Post::with('activeComments')->get();
 ### parent Relationship
 ```php
 $comment = Comments::latest()->first();
-    
+
 $comment->parent;
 
 // returns the comment's parent if available
@@ -196,7 +196,7 @@ $comment->parent;
 ### children Relationship
 ```php
 $comment = Comments::latest()->first();
-    
+
 $comment->children;
 
 // returns the comment's children if available
@@ -207,7 +207,7 @@ $comment->children;
 ### ancestors Relationship
 ```php
 $comment = Comments::latest()->first();
-    
+
 $comment->ancestors;
 
 // return the comment's ancestors if available
@@ -218,15 +218,12 @@ $comment->ancestors;
 ### descendants Relationship
 ```php
 $comment = Comments::latest()->first();
-    
+
 $comment->descendants;
 
 // return the comment's descendants if available
 
 ```
-
-
-
 
 ---
 
@@ -236,7 +233,7 @@ thanks to the great [laravel-nestedset](https://github.com/lazychaser/laravel-ne
 ### toTree()
 ```php
 $post->comments->toTree();
-    
+
 // returns a collection of the comment's tree structure associated with the post
 
 ```
@@ -245,7 +242,7 @@ $post->comments->toTree();
 ### toFlatTree()
 ```php
 $post->comments->toFlatTree();
-    
+
 // return a collection of the comment's flat tree structure associated with the post
 
 ```
@@ -253,9 +250,9 @@ $post->comments->toFlatTree();
 ### saveAsRoot()
 ```php
 $comment = $post->comments()->latest()->first();
-    
+
 $comment->saveAsRoot();
-    
+
 // Implicitly change the comment's position to Root
 // returns boolean
 
@@ -267,13 +264,14 @@ $comment->saveAsRoot();
 $comment = $post->comments()->latest()->first();
 
 $comment->makeRoot()->save();
-    
+
 // Explicitly change the comment's position to Root
 // returns boolean
 
 ```
 
 
-#### Credits
+## Credits
 
- - Ali Bayat - <ali.bayat@live.com>
+ - [Ali Bayat](https://github.com/AliBayat)
+ - [All Contributors](../../contributors)
